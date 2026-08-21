@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader } from "@/components/PageHeader";
 import { orders, currency } from "@/lib/rings-data";
 
@@ -14,16 +14,31 @@ export const Route = createFileRoute("/orders/$orderId")({
       { property: "og:description", content: "Live status timeline for this flower rental order." },
     ],
   }),
-  loader: ({ params }) => {
-    const order = orders.find((o) => o.id === params.orderId);
-    if (!order) throw notFound();
-    return { order };
-  },
   component: OrderDetail,
 });
 
 function OrderDetail() {
-  const { order } = Route.useLoaderData();
+  const { orderId } = Route.useParams();
+  const order = orders.find((o) => o.id === orderId);
+
+  if (!order) {
+    return (
+      <>
+        <PageHeader title="Order not found" eyebrow="Tracking" />
+        <main className="px-6">
+          <p className="rounded-2xl bg-kraft/10 p-5 text-sm text-moss/70 ring-1 ring-black/5">
+            We couldn't find order {orderId}.
+          </p>
+          <Link
+            to="/orders"
+            className="mt-4 block rounded-xl bg-stem py-3 text-center font-medium text-paper"
+          >
+            Back to tracking
+          </Link>
+        </main>
+      </>
+    );
+  }
 
   return (
     <>
