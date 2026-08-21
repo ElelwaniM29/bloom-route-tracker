@@ -1,22 +1,33 @@
-# Bloom & Bloom Orders
+# Rings — Flower Rental Workspace
 
-Create a web application for a flower rental company , orders, and specials called Rings. Make it consists of the following functionalities: User Order, Tracking Order,  Calendar view and Notifications.  It should also mobile-friendly design, Modern interface, Easy navigation and Responsive layout.  Add analytics over the last six months.
+Rings is a mobile-first web app for a flower rental company. It covers ordering,
+live delivery tracking, a delivery/pickup calendar, notifications, and six months
+of performance analytics.
 
-This project was built with [Lovable](https://lovable.dev).
+## Features
 
-**Live app**: https://bloom-route-tracker.lovable.app
+- **Dashboard** (`/`) — seasonal specials, quick-order CTA, active delivery tracking, insight preview.
+- **Order** (`/order`) — multi-step rental flow: arrangement, rental date range, delivery address.
+- **Orders** (`/orders`) — all rentals with status chips and rental progress bars.
+- **Order tracking** (`/orders/$orderId`) — milestone timeline from conditioning to return pickup.
+- **Calendar** (`/calendar`) — monthly grid with delivery and pickup markers plus per-day detail.
+- **Notifications** (`/notifications`) — dispatch, pickup and specials alerts with mark-as-read.
+- **Analytics** (`/analytics`) — six-month revenue, order volume, retention and arrangement mix.
 
-## Build with Lovable
+## Design
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/aa73acf9-5584-4666-a1a4-6d6de87ca0ef).
+"Botanical operations" direction: muted earthy palette (stem green, kraft sand, blush bud),
+Instrument Serif headings with Inter body text, and a functional, operations-focused layout.
+All colours live as semantic tokens in `src/styles.css`.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+## Tech stack
+
+- TanStack Start (file-based routing, server functions)
+- React 19 + TypeScript
+- Tailwind CSS v4
+- Vite 7
 
 ## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
 git clone <this-repository-url>
@@ -24,3 +35,22 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+The app runs on http://localhost:8080.
+
+## Project structure
+
+```
+src/
+  assets/          arrangement imagery
+  components/      BottomNav, PageHeader
+  lib/rings-data.ts  specials, orders, calendar events, notifications, stats
+  routes/          file-based routes (see src/routes/README.md)
+  styles.css       design tokens and Tailwind theme
+```
+
+Data is currently mock data in `src/lib/rings-data.ts`; swap it for a backend when needed.
+
+## Built with
+
+Built with [Lovable](https://lovable.dev) — open the project there to keep building.
