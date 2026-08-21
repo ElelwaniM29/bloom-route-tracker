@@ -23,8 +23,8 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const active = orders.filter((o) => o.status !== "Returned").slice(0, 2);
-  const last = sixMonthStats[sixMonthStats.length - 1];
-  const first = sixMonthStats[0];
+  const last = sixMonthStats[sixMonthStats.length - 1]!;
+  const first = sixMonthStats[0]!;
   const growth = ((last.orders - first.orders) / first.orders) * 100;
   const revenue = sixMonthStats.reduce((sum, m) => sum + m.revenue, 0);
   const peak = Math.max(...sixMonthStats.map((m) => m.revenue));

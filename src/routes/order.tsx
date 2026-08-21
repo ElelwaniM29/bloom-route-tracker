@@ -4,9 +4,8 @@ import { PageHeader } from "@/components/PageHeader";
 import { specials, currency } from "@/lib/rings-data";
 
 export const Route = createFileRoute("/order")({
-  validateSearch: (search: Record<string, unknown>): { item?: string } => ({
-    item: typeof search.item === "string" ? search.item : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { item?: string } =>
+    typeof search["item"] === "string" ? { item: search["item"] } : {},
   head: () => ({
     meta: [
       { title: "Place a Flower Rental Order — Rings" },
@@ -24,14 +23,14 @@ export const Route = createFileRoute("/order")({
 function OrderPage() {
   const { item } = Route.useSearch();
   const navigate = useNavigate();
-  const [selected, setSelected] = useState(item ?? specials[0].id);
+  const [selected, setSelected] = useState(item ?? specials[0]!.id);
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
   const [placed, setPlaced] = useState<string | null>(null);
 
-  const active = specials.find((s) => s.id === selected) ?? specials[0];
+  const active = specials.find((s) => s.id === selected) ?? specials[0]!;
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();

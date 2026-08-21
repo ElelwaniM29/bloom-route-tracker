@@ -21,15 +21,15 @@ function AnalyticsPage() {
   const revenue = sixMonthStats.reduce((s, m) => s + m.revenue, 0);
   const totalOrders = sixMonthStats.reduce((s, m) => s + m.orders, 0);
   const peakRevenue = Math.max(...sixMonthStats.map((m) => m.revenue));
-  const first = sixMonthStats[0];
-  const last = sixMonthStats[sixMonthStats.length - 1];
+  const first = sixMonthStats[0]!;
+  const last = sixMonthStats[sixMonthStats.length - 1]!;
   const growth = ((last.orders - first.orders) / first.orders) * 100;
   const avgOrder = revenue / totalOrders;
 
   const mix = [
-    { name: specials[0].name, share: 44 },
-    { name: specials[1].name, share: 33 },
-    { name: specials[2].name, share: 23 },
+    { name: specials[0]!.name, share: 44 },
+    { name: specials[1]!.name, share: 33 },
+    { name: specials[2]!.name, share: 23 },
   ];
 
   return (
